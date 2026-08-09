@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Aom Training — OET + PSI Stage 3</title>
+<title>Aom Training — เตรียมสอบขึ้นทะเบียนเภสัชกร</title>
 <style>
 :root{color-scheme:light}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -42,14 +42,14 @@ td{padding:6px;border-bottom:1px solid #eef1f6;vertical-align:top}
 </head>
 <body>
 <div class="wrap">
-<h1>📚 Aom Training — OET + PSI Stage 3</h1>
-<div class="sub">เป้าหมาย: ขึ้นทะเบียนเภสัชกรที่ไอร์แลนด์ (Plan B) · <span id="sync" class="s-off">โหมดออฟไลน์</span></div>
+<h1>📚 Aom Training — เตรียมสอบขึ้นทะเบียนเภสัชกรต่างประเทศ</h1>
+<div class="sub">ภาษาอังกฤษ (OET/IELTS) + ความรู้วิชาชีพ — ใช้ได้ทั้ง <b>ไอร์แลนด์ (PSI)</b> และ <b>ออสเตรเลีย (OPRA)</b> · <span id="sync" class="s-off">โหมดออฟไลน์</span></div>
 
 <div class="grid g3">
   <div class="card"><h2>⏱ ชั่วโมงสะสม</h2><div class="stat" id="hTot">0 <small>/ 300 ชม.</small></div>
     <div class="bar"><i id="hBar" style="width:0%;background:#2e75b6"></i></div><div class="muted" id="hLeft">เหลืออีก 300 ชม.</div></div>
-  <div class="card"><h2>📗 ชั่วโมง Stage 3</h2><div class="stat" id="sTot">0 <small>ชม.</small></div>
-    <div class="bar"><i id="sBar" style="width:0%;background:#2e8b57"></i></div><div class="muted">ติวคลินิก/คำนวณ/กฎหมาย</div></div>
+  <div class="card"><h2>📗 ชั่วโมงวิชาชีพ</h2><div class="stat" id="sTot">0 <small>ชม.</small></div>
+    <div class="bar"><i id="sBar" style="width:0%;background:#2e8b57"></i></div><div class="muted">ติวคลินิก / คำนวณ / กฎหมายวิชาชีพ</div></div>
   <div class="card"><h2>🔥 สัปดาห์นี้</h2><div class="stat" id="wTot">0 <small>/ 6 ชม.</small></div>
     <div class="bar"><i id="wBar" style="width:0%;background:#c9a227"></i></div><div class="muted" id="wMsg">ยังไม่ได้บันทึก</div></div>
 </div>
@@ -82,7 +82,7 @@ td{padding:6px;border-bottom:1px solid #eef1f6;vertical-align:top}
 
   <div class="card"><h2>📊 4. ขอวิเคราะห์ความคืบหน้า <span class="badge b-blue">เดือนละครั้ง</span></h2>
     <div class="muted">Claude อ่านข้อมูลจาก Google Sheet ได้เอง ไม่ต้องพิมพ์ตัวเลขซ้ำ</div>
-    <div class="tpl" id="t4">ช่วยดูความคืบหน้าการเตรียมสอบของแฟนใน Google Sheet ชื่อ "Aom-Training-Log" หน่อย แล้วบอกว่า:
+    <div class="tpl" id="t4">ช่วยดูความคืบหน้าการเตรียมสอบขึ้นทะเบียนเภสัชกรใน Google Sheet ชื่อ "Aom-Training-Log" หน่อย แล้วบอกว่า:
 (1) ชั่วโมงเรียนตกเป้า 6 ชม./สัปดาห์ ไหม
 (2) หัวข้อไหนที่ไม่ได้แตะมานานเกินไป
 (3) คะแนน mock ดีขึ้น/แย่ลงตรงไหน เทียบเดือนก่อน
@@ -100,14 +100,14 @@ td{padding:6px;border-bottom:1px solid #eef1f6;vertical-align:top}
     <label>วันที่</label><input type="date" id="fD">
     <div class="row">
       <div><label>ชม. OET</label><input type="number" id="fO" step="0.5" min="0" placeholder="1.5"></div>
-      <div><label>ชม. Stage 3</label><input type="number" id="fS" step="0.5" min="0" placeholder="0.5"></div>
+      <div><label>ชม. วิชาชีพ</label><input type="number" id="fS" step="0.5" min="0" placeholder="0.5"></div>
     </div>
     <label>เรียนอะไร</label>
     <select id="fT">
       <option>✍️ Writing — จดหมายส่งต่อ</option><option>🗣 Speaking — role play</option>
       <option>🎧 Listening</option><option>📖 Reading</option>
       <option>🔢 คำนวณทางเภสัชกรรม</option><option>💊 เภสัชวิทยา/Therapeutics</option>
-      <option>⚖️ กฎหมายเภสัชไอร์แลนด์</option><option>🏥 ซ้อม OSCE</option><option>📇 ทบทวนศัพท์ Anki</option>
+      <option>⚖️ กฎหมาย/จรรยาบรรณวิชาชีพ</option><option>🏥 ซ้อม OSCE / สอบปฏิบัติ</option><option>📇 ทบทวนศัพท์ Anki</option>
     </select>
     <label>สรุปที่ได้ / ศัพท์ใหม่ / จุดที่ยังไม่เข้าใจ</label>
     <textarea id="fN" rows="3" placeholder="เช่น ทบทวน beta-blocker · ศัพท์ใหม่: titrate, tapering · ยังงงการคำนวณ IV rate"></textarea>
@@ -128,7 +128,7 @@ td{padding:6px;border-bottom:1px solid #eef1f6;vertical-align:top}
       <div><label>กฎหมาย %</label><input type="number" id="mLw" placeholder="70"></div>
       <div><label>OSCE /8</label><input type="number" id="mO" placeholder="6"></div></div>
     <div style="margin-top:10px"><button class="btn-g" onclick="addMock()">💾 บันทึกคะแนน</button></div>
-    <div class="muted" style="margin-top:9px">🎯 เกณฑ์ก่อนจ่ายค่าสอบจริง: คำนวณ &gt;90% · Applied &gt;75% · กฎหมาย &gt;70% · OSCE ≥6/8 — ยังไม่ถึงอย่าเพิ่งจ่าย (MCQ €2,250 / OSCE €2,750)</div>
+    <div class="muted" style="margin-top:9px">🎯 เกณฑ์ก่อนจ่ายค่าสอบจริง: คำนวณ &gt;90% · Applied &gt;75% · กฎหมาย &gt;70% · OSCE ≥6/8 — ยังไม่ถึงอย่าเพิ่งจ่ายค่าสอบ (PSI: MCQ €2,250 / OSCE €2,750 · OPRA มีค่าสอบ+ค่าขึ้นทะเบียนแยก)</div>
   </div>
 </div>
 
@@ -148,13 +148,13 @@ td{padding:6px;border-bottom:1px solid #eef1f6;vertical-align:top}
   <thead><tr><th style="width:82px">วันที่</th><th style="width:100px">หัวข้อ</th><th style="width:50px">ชม.</th><th>สรุป</th><th style="width:30px"></th></tr></thead>
   <tbody id="tb"><tr><td colspan="5" class="muted">ยังไม่มีบันทึก</td></tr></tbody></table></div></div>
 
-<div class="muted" style="margin-top:14px;text-align:center">Aom-Training · ข้อมูลเก็บที่ Google Sheet ของคุณเอง</div>
+<div class="muted" style="margin-top:14px;text-align:center">Aom Training · ข้อมูลเก็บที่ Google Sheet ของคุณเอง · ใช้ได้ทั้งเส้นทาง PSI (ไอร์แลนด์) และ OPRA (ออสเตรเลีย)</div>
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
 var LK='aom_log_v2',MK='aom_mock_v2',CK='aom_chk_v2',UK='aom_url_v2';
-var CHKS=['เขียนจดหมาย Writing 1 ฉบับ + ส่งให้ตรวจ','ซ้อม Role-play กับ Ness 2 การ์ด (อัดเสียง)','ทำโจทย์คำนวณ 5 ข้อ','อ่านสรุปคลินิก + เกร็ดกฎหมายไอร์แลนด์','Listening + Reading เต็มชุด','Anki ทุกวัน','บันทึกชั่วโมงลงแดชบอร์ด'];
+var CHKS=['เขียนจดหมาย Writing 1 ฉบับ + ส่งให้ตรวจ','ซ้อม Role-play กับ Ness 2 การ์ด (อัดเสียง)','ทำโจทย์คำนวณ 5 ข้อ','อ่านสรุปคลินิก + เกร็ดกฎหมายวิชาชีพ','Listening + Reading เต็มชุด','Anki ทุกวัน','บันทึกชั่วโมงลงแดชบอร์ด'];
 var LOG=[],MOCK=[];
 
 function ls(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
@@ -174,6 +174,7 @@ function saveCfg(){var u=document.getElementById('cfgUrl').value.trim();
 function clearCfg(){localStorage.removeItem(UK);document.getElementById('cfgUrl').value='';
  status('s-off','โหมดออฟไลน์');toast('ยกเลิกการเชื่อมต่อแล้ว')}
 
+/* ---------- sync ---------- */
 function pull(){
   var u=url();
   if(!u){status('s-off','โหมดออฟไลน์');LOG=ls(LK,[]);MOCK=ls(MK,[]);render();return}
@@ -198,6 +199,7 @@ function push(payload,okMsg){
     .catch(function(){toast(okMsg+' (เก็บในเครื่อง — ซิงก์ไม่สำเร็จ)')});
 }
 
+/* ---------- actions ---------- */
 function addLog(){
   var d=document.getElementById('fD').value||new Date().toISOString().slice(0,10);
   var o=parseFloat(document.getElementById('fO').value)||0;
@@ -222,6 +224,7 @@ function del(i){
   push({action:'delete',sheet:'Log',timestamp:rec.ts},'ลบแล้ว');
 }
 
+/* ---------- render ---------- */
 function weekStart(){var n=new Date();n.setDate(n.getDate()-((n.getDay()+6)%7));n.setHours(0,0,0,0);return n}
 function esc(s){return String(s==null?'':s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
 function render(){
