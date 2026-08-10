@@ -54,6 +54,34 @@ td{padding:6px;border-bottom:1px solid #eef1f6;vertical-align:top}
     <div class="bar"><i id="wBar" style="width:0%;background:#c9a227"></i></div><div class="muted" id="wMsg">ยังไม่ได้บันทึก</div></div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+<style>
+.md{font-size:14px;line-height:1.7}
+.md h1{font-size:17px;margin:0 0 10px}
+.md h2{font-size:15px;margin:18px 0 8px;padding-top:12px;border-top:1px solid #e5e7eb}
+.md h3{font-size:14px;margin:14px 0 6px;color:#2e75b6}
+.md table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px}
+.md th,.md td{border:1px solid #e5e7eb;padding:6px 8px;text-align:left;vertical-align:top}
+.md th{background:#f6f8fa}
+.md blockquote{margin:10px 0;padding:8px 12px;border-left:3px solid #c9a227;background:#fffbeb}
+.md code{background:#f3f4f6;padding:1px 5px;border-radius:4px;font-size:12px}
+.md ul,.md ol{padding-left:22px;margin:8px 0}
+.md li{margin:4px 0}
+.md hr{border:0;border-top:1px solid #e5e7eb;margin:16px 0}
+.md p{margin:8px 0}
+.md a{color:#2e75b6}
+#wkWrap{max-height:70vh;overflow:auto;padding-right:6px}
+</style>
+
+<div class="sec">📬 ชุดติวประจำสัปดาห์</div>
+<div class="card">
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <div class="muted" id="wkNote">Claude ส่งให้ทุกเช้าวันจันทร์ — อ่านที่นี่ได้เลย ไม่ต้องเปิดแอป</div>
+    <select id="wkSel" style="margin-left:auto;padding:5px 8px;border:1px solid #d0d7de;border-radius:7px" onchange="loadWeekly(this.value)"></select>
+  </div>
+  <div id="wkWrap"><div id="wkBody" class="md" style="margin-top:10px">กำลังโหลด…</div></div>
+</div>
+
 <div class="sec">📤 คัดลอกส่งให้ Claude ตรวจ</div>
 <div class="grid g2">
   <div class="card"><h2>✍️ 1. จดหมาย Writing <span class="badge b-red">สำคัญสุด</span></h2>
@@ -249,10 +277,45 @@ function renderChk(){var st=ls(CK,[]),h='';
 function tog(i){var st=ls(CK,[]);st[i]=!st[i];set(CK,st);renderChk()}
 function resetChk(){set(CK,[]);renderChk();toast('เริ่มสัปดาห์ใหม่แล้ว')}
 
+/* ---------- weekly pack ---------- */
+var TH_M=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+function wkLabel(f){
+  var m=f.match(/(\d{4})-(\d{2})-(\d{2})/);
+  if(!m)return f;
+  return parseInt(m[3],10)+' '+TH_M[parseInt(m[2],10)-1]+' '+(parseInt(m[1],10)+543);
+}
+function wkSay(msg){document.getElementById('wkBody').innerHTML='<div class="muted">'+esc(msg)+'</div>'}
+function loadWeekly(f){
+  if(!f){return}
+  fetch('content/weekly/'+f,{cache:'no-store'})
+    .then(function(r){if(!r.ok)throw 0;return r.text()})
+    .then(function(md){
+      var el=document.getElementById('wkBody');
+      if(window.marked&&marked.parse){el.innerHTML=marked.parse(md)}
+      /* CDN blocked (เคยเจอกับ raw.githubusercontent) — ยังอ่านได้ แค่ไม่จัดรูปแบบ */
+      else{el.innerHTML='<pre style="white-space:pre-wrap;font:inherit">'+esc(md)+'</pre>'}
+      document.getElementById('wkWrap').scrollTop=0;
+    })
+    .catch(function(){wkSay('เปิดชุดติวไม่สำเร็จ ลองรีเฟรชอีกครั้ง')});
+}
+function initWeekly(){
+  fetch('content/index.json',{cache:'no-store'})
+    .then(function(r){if(!r.ok)throw 0;return r.json()})
+    .then(function(j){
+      var list=(j.weekly||[]).slice().sort().reverse();
+      if(!list.length){wkSay('ยังไม่มีชุดติว — รอเช้าวันจันทร์');return}
+      document.getElementById('wkSel').innerHTML=list.map(function(f){
+        return '<option value="'+f+'">'+wkLabel(f)+'</option>'}).join('');
+      document.getElementById('wkNote').textContent='Claude ส่งให้ทุกเช้าวันจันทร์ · มีทั้งหมด '+list.length+' ชุด';
+      loadWeekly(list[0]);
+    })
+    .catch(function(){wkSay('ยังไม่มีชุดติว — รอเช้าวันจันทร์')});
+}
+
 document.getElementById('fD').value=new Date().toISOString().slice(0,10);
 document.getElementById('mD').value=new Date().toISOString().slice(0,10);
 document.getElementById('cfgUrl').value=url();
-renderChk();pull();
+renderChk();pull();initWeekly();
 </script>
 </body>
 </html>
