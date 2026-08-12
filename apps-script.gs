@@ -5,11 +5,13 @@
  * วิธีติดตั้ง: ดูขั้นตอนใน README.md (SETUP-GOOGLE-SHEET)
  */
 
-var SHEET_LOG  = 'Log';
-var SHEET_MOCK = 'Mock';
+var SHEET_LOG   = 'Log';
+var SHEET_MOCK  = 'Mock';
+var SHEET_VOCAB = 'Vocab';
 
-var HEAD_LOG  = ['timestamp','date','type','hours_oet','hours_stage3','note'];
-var HEAD_MOCK = ['timestamp','date','listening','reading','writing','speaking','calc','applied','law','osce','note'];
+var HEAD_LOG   = ['timestamp','date','type','hours_oet','hours_stage3','note'];
+var HEAD_MOCK  = ['timestamp','date','listening','reading','writing','speaking','calc','applied','law','osce','note'];
+var HEAD_VOCAB = ['timestamp','date','word','meaning','example','source'];
 
 /** สร้างชีตถ้ายังไม่มี + ใส่หัวตาราง */
 function ensureSheet_(name, head) {
@@ -49,8 +51,9 @@ function doGet(e) {
   try {
     out = {
       ok: true,
-      log:  readSheet_(SHEET_LOG,  HEAD_LOG),
-      mock: readSheet_(SHEET_MOCK, HEAD_MOCK)
+      log:   readSheet_(SHEET_LOG,   HEAD_LOG),
+      mock:  readSheet_(SHEET_MOCK,  HEAD_MOCK),
+      vocab: readSheet_(SHEET_VOCAB, HEAD_VOCAB)
     };
   } catch (err) {
     out = { ok: false, error: String(err) };
@@ -73,7 +76,7 @@ function doPost(e) {
     var body = JSON.parse(e.postData.contents);
 
     if (body.action === 'delete') {
-      var head = body.sheet === SHEET_MOCK ? HEAD_MOCK : HEAD_LOG;
+      var head = body.sheet === SHEET_MOCK ? HEAD_MOCK : (body.sheet === SHEET_VOCAB ? HEAD_VOCAB : HEAD_LOG);
       var sh = ensureSheet_(body.sheet, head);
       var last = sh.getLastRow();
       if (last >= 2) {
@@ -94,6 +97,12 @@ function doPost(e) {
                    body.speaking, body.calc, body.applied, body.law, body.osce, body.note || '']);
       res = { ok: true, timestamp: ts };
 
+    } else if (body.sheet === SHEET_VOCAB) {
+      var v = ensureSheet_(SHEET_VOCAB, HEAD_VOCAB);
+      var ts3 = body.timestamp || new Date().getTime();
+      v.appendRow([ts3, body.date, body.word, body.meaning || '', body.example || '', body.source || '']);
+      res = { ok: true, timestamp: ts3 };
+
     } else {
       var l = ensureSheet_(SHEET_LOG, HEAD_LOG);
       var ts2 = body.timestamp || new Date().getTime();
@@ -112,5 +121,6 @@ function doPost(e) {
 function setup() {
   ensureSheet_(SHEET_LOG, HEAD_LOG);
   ensureSheet_(SHEET_MOCK, HEAD_MOCK);
-  SpreadsheetApp.getActiveSpreadsheet().toast('สร้างชีต Log และ Mock เรียบร้อย', 'Aom-Training', 5);
+  ensureSheet_(SHEET_VOCAB, HEAD_VOCAB);
+  SpreadsheetApp.getActiveSpreadsheet().toast('สร้างชีต Log, Mock และ Vocab เรียบร้อย', 'Aom-Training', 5);
 }

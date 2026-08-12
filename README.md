@@ -34,7 +34,7 @@
 6. เลือกฟังก์ชัน **`setup`** จากเมนูดรอปดาวน์ด้านบน → กด **Run**
    - ครั้งแรกจะขออนุญาต → **Review permissions → เลือกบัญชี → Advanced → Go to (ชื่อโปรเจกต์) (unsafe) → Allow**
    - *(ที่ขึ้นว่า unsafe เพราะเป็นสคริปต์ที่เราเขียนเอง ไม่ได้ผ่านการรับรองของ Google — ปกติ)*
-   - เสร็จแล้วจะเห็นชีตชื่อ **Log** และ **Mock** ถูกสร้างขึ้นมา
+   - เสร็จแล้วจะเห็นชีตชื่อ **Log**, **Mock** และ **Vocab** ถูกสร้างขึ้นมา
 
 ### 2.3 Deploy เป็น Web App
 7. มุมขวาบน กด **Deploy → New deployment**
@@ -85,6 +85,7 @@
 
 **แท็บ `Log`** — `timestamp | date | type | hours_oet | hours_stage3 | note`
 **แท็บ `Mock`** — `timestamp | date | listening | reading | writing | speaking | calc | applied | law | osce | note`
+**แท็บ `Vocab`** — `timestamp | date | word | meaning | example | source`
 
 *(Claude อ่านโครงสร้างนี้เพื่อวิเคราะห์ความคืบหน้า — อย่าเปลี่ยนชื่อคอลัมน์)*
 

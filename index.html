@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Aom Training — IELTS + เตรียมขึ้นทะเบียนเภสัชกร</title>
+<title>Aom Training — IELTS + Overseas Pharmacist Registration Prep</title>
 <style>
 :root{color-scheme:light}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -41,20 +41,21 @@ td{padding:6px;border-bottom:1px solid #eef1f6;vertical-align:top}
 .wktabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
 .wktab{padding:6px 13px;border-radius:20px;font-size:12.5px;font-weight:700;background:#eef2f7;color:#37455c;border:1px solid #d3dbe6;cursor:pointer}
 .wktab.on{background:#2e75b6;color:#fff;border-color:#2e75b6}
+.ansbox{margin-top:16px;padding-top:14px;border-top:2px dashed #c9a227}
 </style>
 </head>
 <body>
 <div class="wrap">
-<h1>📚 Aom Training — IELTS Academic 7.0 + เตรียมขึ้นทะเบียนเภสัชกรต่างประเทศ</h1>
-<div class="sub"><b>IELTS Academic</b> เป็นหลัก — ข้อสอบเดียวที่ทั้ง <b>ไอร์แลนด์ (PSI)</b>, <b>ออสเตรเลีย (Ahpra)</b> และ <b>แคนาดา</b> ยอมรับ + <b>Pharmacy Core</b> (คำนวณ/คลินิก/counselling ที่ใช้ร่วมกันได้ทั้ง 3 ประเทศ) · <span id="sync" class="s-off">โหมดออฟไลน์</span></div>
+<h1>📚 Aom Training — IELTS Academic 7.0 + Overseas Pharmacist Registration Prep</h1>
+<div class="sub"><b>IELTS Academic</b> is the main focus — the one exam accepted by <b>Ireland (PSI)</b>, <b>Australia (Ahpra)</b> and <b>Canada</b> + <b>Pharmacy Core</b> (calculations/clinical/counselling shared across all 3 countries) · <span id="sync" class="s-off">Offline mode</span></div>
 
 <div class="grid g3">
-  <div class="card"><h2>⏱ ชั่วโมงสะสม</h2><div class="stat" id="hTot">0 <small>/ 300 ชม.</small></div>
-    <div class="bar"><i id="hBar" style="width:0%;background:#2e75b6"></i></div><div class="muted" id="hLeft">เหลืออีก 300 ชม.</div></div>
-  <div class="card"><h2>📗 ชั่วโมง Pharmacy Core</h2><div class="stat" id="sTot">0 <small>ชม.</small></div>
-    <div class="bar"><i id="sBar" style="width:0%;background:#2e8b57"></i></div><div class="muted">คำนวณ / เภสัชวิทยา / counselling — ใช้ร่วมได้ 3 ประเทศ</div></div>
-  <div class="card"><h2>🔥 สัปดาห์นี้</h2><div class="stat" id="wTot">0 <small>/ 6 ชม.</small></div>
-    <div class="bar"><i id="wBar" style="width:0%;background:#c9a227"></i></div><div class="muted" id="wMsg">ยังไม่ได้บันทึก</div></div>
+  <div class="card"><h2>⏱ Total hours</h2><div class="stat" id="hTot">0 <small>/ 300 hrs</small></div>
+    <div class="bar"><i id="hBar" style="width:0%;background:#2e75b6"></i></div><div class="muted" id="hLeft">300 hrs left</div></div>
+  <div class="card"><h2>📗 Pharmacy Core hours</h2><div class="stat" id="sTot">0 <small>hrs</small></div>
+    <div class="bar"><i id="sBar" style="width:0%;background:#2e8b57"></i></div><div class="muted">Calculations / pharmacology / counselling — shared across 3 countries</div></div>
+  <div class="card"><h2>🔥 This week</h2><div class="stat" id="wTot">0 <small>/ 6 hrs</small></div>
+    <div class="bar"><i id="wBar" style="width:0%;background:#c9a227"></i></div><div class="muted" id="wMsg">Not logged yet</div></div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
@@ -76,127 +77,101 @@ td{padding:6px;border-bottom:1px solid #eef1f6;vertical-align:top}
 #wkWrap{max-height:70vh;overflow:auto;padding-right:6px}
 </style>
 
-<div class="sec">📬 ชุดติวประจำสัปดาห์</div>
+<div class="sec">📬 Weekly study pack</div>
 <div class="card">
   <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-    <div class="muted" id="wkNote">Claude ส่งให้ทุกเช้าวันจันทร์ — อ่านที่นี่ได้เลย ไม่ต้องเปิดแอป</div>
+    <div class="muted" id="wkNote">Claude sends a new pack every Monday morning — read it here, no need to open the app</div>
     <select id="wkSel" style="margin-left:auto;padding:5px 8px;border:1px solid #d0d7de;border-radius:7px" onchange="loadWeekly(this.value)"></select>
   </div>
   <div id="wkTabs" class="wktabs"></div>
-  <div id="wkWrap"><div id="wkBody" class="md" style="margin-top:10px">กำลังโหลด…</div></div>
+  <div id="wkWrap"><div id="wkBody" class="md" style="margin-top:10px">Loading…</div></div>
 </div>
 
-<div class="sec">📤 คัดลอกส่งให้ Claude ตรวจ</div>
+<div class="sec">📊 Ask for a progress review</div>
+<div class="card"><h2>Monthly progress check <span class="badge b-blue">once a month</span></h2>
+  <div class="muted">Claude reads straight from the Google Sheet — no need to retype numbers</div>
+  <div class="tpl" id="t4">Please check my IELTS + Pharmacy Core progress in the Google Sheet called "Aom-Training-Log" and tell me: (1) Am I hitting the 6 hrs/week target? (2) Which IELTS part or Pharmacy Core topic has been neglected too long? (3) Where have mock scores improved or declined vs last month? (4) How should I adjust next week's plan?</div>
+  <button class="btn" onclick="cp('t4')">📋 Copy</button></div>
+
+<div class="sec">📔 Study log</div>
 <div class="grid g2">
-  <div class="card"><h2>✍️ 1. IELTS Writing Task 1+2 <span class="badge b-red">สำคัญสุด</span></h2>
-    <div class="muted">เขียนจับเวลา 20+40 นาที (เสาร์) → วางคำตอบด้านล่างแล้วกดคัดลอกทีเดียว</div>
-    <div class="tpl" id="t1">ช่วยตรวจ IELTS Writing Task 1 และ Task 2 ให้หน่อย ให้ band แยกตามเกณฑ์จริงทั้ง 4 ตัว (Task Achievement/Response, Coherence &amp; Cohesion, Lexical Resource, Grammatical Range &amp; Accuracy) แต่ละอย่างพร้อมเหตุผลสั้นๆ แล้วสรุป: (1) 3 จุดที่ทำให้เสียคะแนนมากสุด (2) ประโยคตัวอย่างที่เขียนใหม่ให้ดูเทียบ (3) คำศัพท์ที่ควรเพิ่มลง Anki ตอบเป็นภาษาไทย ตัวอย่างประโยคเป็นอังกฤษ</div>
-    <label>วาง Task 1 + Task 2 ที่เขียน</label>
-    <textarea id="a1" rows="6" placeholder="วาง/พิมพ์ Task 1 และ Task 2 ที่เขียนตรงนี้..." oninput="saveDraft('a1')"></textarea>
-    <div class="row" style="margin-top:8px"><button class="btn" onclick="cpWriting()">📋 คัดลอกพร้อมคำตอบ</button>
-      <button class="btn-s" onclick="clearDraft(['a1'])">🗑 ล้าง</button></div></div>
-
-  <div class="card"><h2>🗣 2. IELTS Speaking</h2>
-    <div class="muted">อัดเสียงไว้ (อาทิตย์) — พิมพ์ transcript ด้านล่างได้ ถ้าส่งไฟล์เสียงแยก ก็คัดลอกข้อความนี้แล้วแนบไฟล์ในแชท</div>
-    <div class="tpl" id="t5">ช่วยตรวจ IELTS Speaking ให้หน่อย (ไฟล์เสียง/transcript ที่แนบ) ให้ band ตามเกณฑ์ 4 ตัว (Fluency &amp; Coherence, Lexical Resource, Grammatical Range &amp; Accuracy, Pronunciation) พร้อมเหตุผล แล้วชี้ 3 จุดที่ต้องแก้ ตอบเป็นภาษาไทย</div>
-    <label>Transcript / หัวข้อ cue card ที่ตอบ (ถ้ามี)</label>
-    <textarea id="a5" rows="4" placeholder="พิมพ์ transcript หรือสรุปหัวข้อ cue card ที่ตอบ..." oninput="saveDraft('a5')"></textarea>
-    <div class="row" style="margin-top:8px"><button class="btn" onclick="cpSpeaking()">📋 คัดลอกพร้อมข้อความ</button>
-      <button class="btn-s" onclick="clearDraft(['a5'])">🗑 ล้าง</button></div></div>
-
-  <div class="card"><h2>🔢 3. Pharmacy Core — โจทย์คำนวณที่ทำผิด</h2>
-    <div class="muted">ส่งเฉพาะข้อที่ผิด/ไม่แน่ใจ พร้อมวิธีที่คิด</div>
-    <div class="tpl" id="t2">โจทย์คำนวณเภสัชข้อนี้ทำผิด ช่วยดูว่าพลาดตรงไหน มีวิธีคิดที่เร็ว/ปลอดภัยกว่าไหม และโจทย์แนวนี้มักหลอกตรงจุดไหน</div>
-    <label>โจทย์</label><textarea id="a2q" rows="2" placeholder="วางโจทย์ตรงนี้..." oninput="saveDraft('a2q')"></textarea>
-    <label>วิธีที่คิด</label><textarea id="a2w" rows="2" placeholder="เขียนวิธีคิดของตัวเอง..." oninput="saveDraft('a2w')"></textarea>
-    <label>คำตอบที่ได้</label><input id="a2a" placeholder="คำตอบที่ตอบไป" oninput="saveDraft('a2a')">
-    <div class="row" style="margin-top:8px"><button class="btn" onclick="cpCalc()">📋 คัดลอกพร้อมคำตอบ</button>
-      <button class="btn-s" onclick="clearDraft(['a2q','a2w','a2a'])">🗑 ล้าง</button></div></div>
-
-  <div class="card"><h2>🏥 4. Pharmacy Core — จุดติดขัด Counselling Card</h2>
-    <div class="muted">ไม่ต้องส่งไฟล์เสียง แค่บอกจุดที่ติด</div>
-    <div class="tpl" id="t3">ซ้อม counselling card (Pharmacy Core / OSCE-style) แล้วติดตรงนี้ ช่วยให้ประโยคที่ใช้ได้จริง และบอกลำดับการพูดที่ควรใช้</div>
-    <label>สถานการณ์</label><input id="a3s" placeholder="เช่น ผู้ป่วยขอยาที่ห้ามใช้ร่วมกับยาเดิม" oninput="saveDraft('a3s')">
-    <label>ตรงที่ติด</label><input id="a3p" placeholder="เช่น นึกคำอธิบายผลข้างเคียงไม่ออก" oninput="saveDraft('a3p')">
-    <div class="row" style="margin-top:8px"><button class="btn" onclick="cpCounsel()">📋 คัดลอกพร้อมคำตอบ</button>
-      <button class="btn-s" onclick="clearDraft(['a3s','a3p'])">🗑 ล้าง</button></div></div>
-
-  <div class="card"><h2>📊 5. ขอวิเคราะห์ความคืบหน้า <span class="badge b-blue">เดือนละครั้ง</span></h2>
-    <div class="muted">Claude อ่านข้อมูลจาก Google Sheet ได้เอง ไม่ต้องพิมพ์ตัวเลขซ้ำ</div>
-    <div class="tpl" id="t4">ช่วยดูความคืบหน้าการเตรียม IELTS + Pharmacy Core ใน Google Sheet ชื่อ "Aom-Training-Log" หน่อย แล้วบอกว่า:
-(1) ชั่วโมงเรียนตกเป้า 6 ชม./สัปดาห์ ไหม
-(2) พาร์ท IELTS หรือหัวข้อ Pharmacy Core ไหนที่ไม่ได้แตะมานานเกินไป
-(3) band/คะแนน mock ดีขึ้น/แย่ลงตรงไหน เทียบเดือนก่อน
-(4) ควรปรับแผนสัปดาห์หน้ายังไง</div>
-    <button class="btn" onclick="cp('t4')">📋 คัดลอก</button></div>
-</div>
-
-<div class="card" style="margin-top:12px;background:#f0f7f2;border-color:#bfe0cc">
-  <h2>❌ ไม่ต้องส่ง</h2><span class="pill">Anki</span><span class="pill">Listening</span><span class="pill">Reading</span>
-  <div class="muted">มีเฉลยในไฟล์ชุดติวอยู่แล้ว ตรวจเองได้ — แค่บันทึกชั่วโมงพอ</div></div>
-
-<div class="sec">📔 บันทึกการเรียน</div>
-<div class="grid g2">
-  <div class="card"><h2>➕ บันทึกวันนี้</h2>
-    <label>วันที่</label><input type="date" id="fD">
+  <div class="card"><h2>➕ Log today</h2>
+    <label>Date</label><input type="date" id="fD">
     <div class="row">
-      <div><label>ชม. IELTS</label><input type="number" id="fO" step="0.5" min="0" placeholder="1.5"></div>
-      <div><label>ชม. Pharmacy Core</label><input type="number" id="fS" step="0.5" min="0" placeholder="0.5"></div>
+      <div><label>IELTS hrs</label><input type="number" id="fO" step="0.5" min="0" placeholder="1.5"></div>
+      <div><label>Pharmacy Core hrs</label><input type="number" id="fS" step="0.5" min="0" placeholder="0.5"></div>
     </div>
-    <label>เรียนอะไร</label>
+    <label>What did you study</label>
     <select id="fT">
       <option>✍️ Writing — IELTS Task 1/2</option><option>🗣 Speaking — IELTS Part 1-3</option>
       <option>🎧 Listening</option><option>📖 Reading</option>
-      <option>🔢 คำนวณทางเภสัชกรรม</option><option>💊 เภสัชวิทยา/Therapeutics</option>
-      <option>🏥 Counselling / OSCE-style practice</option><option>📇 ทบทวนศัพท์ Anki</option>
+      <option>🔢 Pharmacy calculations</option><option>💊 Pharmacology/Therapeutics</option>
+      <option>🏥 Counselling / OSCE-style practice</option><option>📇 Anki review</option>
     </select>
-    <label>สรุปที่ได้ / ศัพท์ใหม่ / จุดที่ยังไม่เข้าใจ</label>
-    <textarea id="fN" rows="3" placeholder="เช่น ทบทวน beta-blocker · ศัพท์ใหม่: titrate, tapering · ยังงงการคำนวณ IV rate"></textarea>
+    <label>Takeaways / new vocab / what's still unclear</label>
+    <textarea id="fN" rows="3" placeholder="e.g. reviewed beta-blockers · new vocab: titrate, tapering · still confused about IV rate calculations"></textarea>
     <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-g" onclick="addLog()">💾 บันทึก</button>
-      <button class="btn-s" onclick="pull()">🔄 ดึงข้อมูลล่าสุด</button>
+      <button class="btn-g" onclick="addLog()">💾 Save</button>
+      <button class="btn-s" onclick="pull()">🔄 Refresh data</button>
     </div>
   </div>
 
-  <div class="card"><h2>📝 คะแนน Mock IELTS (ทุก 6 สัปดาห์ — ทำร่วมกับ Ness)</h2>
-    <label>วันที่สอบ</label><input type="date" id="mD">
+  <div class="card"><h2>📇 New vocabulary</h2>
+    <div class="muted">Type a word you learned today — it saves straight to the Vocab tab in your Google Sheet</div>
+    <label>Word / phrase</label><input id="vW" placeholder="e.g. rewilding">
+    <label>Meaning</label><input id="vM" placeholder="e.g. การฟื้นฟูธรรมชาติให้กลับสู่พื้นที่ที่เคยถูกพัฒนา">
+    <label>Example sentence</label><textarea id="vE" rows="2" placeholder="Write a sentence using this word..."></textarea>
+    <label>Source</label>
+    <select id="vS">
+      <option>📖 Reading</option><option>🎧 Listening</option><option>✍️ Writing</option><option>🗣 Speaking</option><option>💊 Pharmacy Core</option><option>Other</option>
+    </select>
+    <div style="margin-top:10px"><button class="btn-g" onclick="addVocab()">💾 Save word</button></div>
+  </div>
+
+  <div class="card"><h2>📝 IELTS Mock Scores (every 6 weeks — done together with Ness)</h2>
+    <label>Exam date</label><input type="date" id="mD">
     <div class="row"><div><label>Listening (band)</label><input type="number" id="mL" step="0.5" placeholder="7.0"></div>
       <div><label>Reading (band)</label><input type="number" id="mR" step="0.5" placeholder="7.0"></div>
       <div><label>Writing (band)</label><input type="number" id="mW" step="0.5" placeholder="6.5"></div>
       <div><label>Speaking (band)</label><input type="number" id="mS" step="0.5" placeholder="7.0"></div></div>
-    <div class="row"><div><label>Pharmacy คำนวณ %</label><input type="number" id="mC" placeholder="90"></div>
+    <div class="row"><div><label>Pharmacy Calc %</label><input type="number" id="mC" placeholder="90"></div>
       <div><label>Pharmacy Applied %</label><input type="number" id="mA" placeholder="75"></div>
-      <div><label>กฎหมาย %</label><input type="number" id="mLw" placeholder="—" disabled title="พักไว้ชั่วคราว — ยังไม่ตัดสินใจประเทศ"></div>
+      <div><label>Law %</label><input type="number" id="mLw" placeholder="—" disabled title="On hold — country not decided yet"></div>
       <div><label>OSCE-style /8</label><input type="number" id="mO" placeholder="6"></div></div>
-    <div style="margin-top:10px"><button class="btn-g" onclick="addMock()">💾 บันทึกคะแนน</button></div>
-    <div class="muted" style="margin-top:9px">🎯 เป้า IELTS: ทุกพาร์ท ≥7.0 (PSI ไม่ให้สอบซ่อมทีละพาร์ท ต้องผ่านครบ 4 พาร์ทในรอบเดียว) · เกณฑ์ Pharmacy Core ก่อนเริ่มซ้อมเข้มข้นสำหรับสอบวิชาชีพจริง: คำนวณ &gt;90% · Applied &gt;75% · OSCE-style ≥6/8 · <b>กฎหมาย พักไว้จนกว่าจะตัดสินใจได้ว่าจะไปประเทศไหน</b></div>
+    <div style="margin-top:10px"><button class="btn-g" onclick="addMock()">💾 Save score</button></div>
+    <div class="muted" style="margin-top:9px">🎯 IELTS target: every part ≥7.0 (PSI doesn't allow resitting individual parts — must pass all 4 in one sitting) · Pharmacy Core benchmark before intensive exam prep: Calc &gt;90% · Applied &gt;75% · OSCE-style ≥6/8 · <b>Law: on hold until the country is decided</b></div>
   </div>
 </div>
 
 <div class="grid g2" style="margin-top:12px">
-  <div class="card"><h2>✅ เช็คลิสต์สัปดาห์นี้</h2><div id="chks"></div>
-    <button class="btn-s" style="margin-top:9px" onclick="resetChk()">🔄 เริ่มสัปดาห์ใหม่</button></div>
-  <div class="card"><h2>⚙️ เชื่อมต่อ Google Sheet</h2>
-    <div class="muted">วาง Web App URL ที่ได้จาก Apps Script (ทำครั้งเดียวต่อเครื่อง)</div>
+  <div class="card"><h2>✅ This week's checklist</h2><div id="chks"></div>
+    <button class="btn-s" style="margin-top:9px" onclick="resetChk()">🔄 Start new week</button></div>
+  <div class="card"><h2>⚙️ Connect Google Sheet</h2>
+    <div class="muted">Paste the Web App URL from Apps Script (one-time setup per device)</div>
     <label>Web App URL</label><input id="cfgUrl" placeholder="https://script.google.com/macros/s/..../exec">
-    <div style="margin-top:9px;display:flex;gap:8px"><button class="btn" onclick="saveCfg()">บันทึก URL</button>
-      <button class="btn-s" onclick="clearCfg()">ยกเลิกเชื่อมต่อ</button></div>
-    <div class="muted" style="margin-top:8px">ถ้ายังไม่ตั้งค่า จะบันทึกลงเครื่องนี้อย่างเดียว (ยังใช้งานได้ปกติ)</div></div>
+    <div style="margin-top:9px;display:flex;gap:8px"><button class="btn" onclick="saveCfg()">Save URL</button>
+      <button class="btn-s" onclick="clearCfg()">Disconnect</button></div>
+    <div class="muted" style="margin-top:8px">If not set up, data is saved locally on this device only (still works fine)</div></div>
 </div>
 
-<div class="card" style="margin-top:12px"><h2>🗂 ประวัติการเรียน <span class="muted" id="cnt"></span></h2>
+<div class="card" style="margin-top:12px"><h2>📚 Vocabulary log <span class="muted" id="vCnt"></span></h2>
   <div style="max-height:320px;overflow:auto"><table>
-  <thead><tr><th style="width:82px">วันที่</th><th style="width:100px">หัวข้อ</th><th style="width:50px">ชม.</th><th>สรุป</th><th style="width:30px"></th></tr></thead>
-  <tbody id="tb"><tr><td colspan="5" class="muted">ยังไม่มีบันทึก</td></tr></tbody></table></div></div>
+  <thead><tr><th style="width:82px">Date</th><th style="width:110px">Word</th><th style="width:160px">Meaning</th><th>Example</th><th style="width:90px">Source</th><th style="width:30px"></th></tr></thead>
+  <tbody id="vTb"><tr><td colspan="6" class="muted">No words yet</td></tr></tbody></table></div></div>
 
-<div class="muted" style="margin-top:14px;text-align:center">Aom Training · ข้อมูลเก็บที่ Google Sheet ของคุณเอง · IELTS Academic ใบเดียวใช้ได้ทั้ง PSI (ไอร์แลนด์), Ahpra (ออสเตรเลีย) และแคนาดา</div>
+<div class="card" style="margin-top:12px"><h2>🗂 Study history <span class="muted" id="cnt"></span></h2>
+  <div style="max-height:320px;overflow:auto"><table>
+  <thead><tr><th style="width:82px">Date</th><th style="width:100px">Topic</th><th style="width:50px">Hrs</th><th>Summary</th><th style="width:30px"></th></tr></thead>
+  <tbody id="tb"><tr><td colspan="5" class="muted">No entries yet</td></tr></tbody></table></div></div>
+
+<div class="muted" style="margin-top:14px;text-align:center">Aom Training · Your data is stored in your own Google Sheet · One IELTS Academic exam covers PSI (Ireland), Ahpra (Australia) and Canada</div>
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
-var LK='aom_log_v2',MK='aom_mock_v2',CK='aom_chk_v2',UK='aom_url_v2',DK='aom_draft_v1';
-var CHKS=['ทำ Reading + Listening เต็มชุด (พุธ)','ทำ Writing Task 1 + Task 2 (เสาร์) + ส่งให้ตรวจ','ซ้อม Speaking กับ Ness (อาทิตย์) อัดเสียง + ส่งให้ตรวจ','ทำโจทย์คำนวณ 5 ข้อ + counselling card 1 ใบ (Pharmacy Core)','อ่านสรุปคลินิกสัปดาห์นี้','Anki ทุกวัน','บันทึกชั่วโมงลงแดชบอร์ด'];
-var LOG=[],MOCK=[];
+var LK='aom_log_v2',MK='aom_mock_v2',VK='aom_vocab_v1',CK='aom_chk_v2',UK='aom_url_v2',DK='aom_draft_v1';
+var CHKS=['Complete Reading + Listening (Wed)','Complete Writing Task 1 + Task 2 (Sat) + submit for review','Practise Speaking with Ness (Sun), record + submit for review','Do 5 calculation questions + 1 counselling card (Pharmacy Core)',"Read this week's clinical summary",'Anki every day','Log hours in the dashboard'];
+var LOG=[],MOCK=[],VOCAB=[];
 
 function ls(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
 function set(k,v){localStorage.setItem(k,JSON.stringify(v))}
@@ -206,7 +181,7 @@ function status(cls,txt){var s=document.getElementById('sync');s.className=cls;s
 
 function cpText(text){var ta=document.createElement('textarea');ta.value=text;
  ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
- try{document.execCommand('copy');toast('คัดลอกแล้ว — วางในแชทได้เลย')}catch(e){toast('คัดลอกไม่สำเร็จ')}
+ try{document.execCommand('copy');toast('Copied — paste it in the chat')}catch(e){toast('Copy failed')}
  document.body.removeChild(ta)}
 function cp(id){cpText(document.getElementById(id).textContent)}
 
@@ -214,48 +189,96 @@ function draftAll(){return ls(DK,{})}
 function saveDraft(id){var d=draftAll();d[id]=document.getElementById(id).value;set(DK,d)}
 function restoreDrafts(){var d=draftAll();Object.keys(d).forEach(function(id){var el=document.getElementById(id);if(el)el.value=d[id]})}
 function clearDraft(ids){ids.forEach(function(id){var el=document.getElementById(id);if(el)el.value=''});
- var d=draftAll();ids.forEach(function(id){delete d[id]});set(DK,d);toast('ล้างข้อความแล้ว')}
+ var d=draftAll();ids.forEach(function(id){delete d[id]});set(DK,d);toast('Cleared')}
 
-function cpWriting(){var base=document.getElementById('t1').textContent,ans=document.getElementById('a1').value.trim();
- cpText(base+'\n\n'+(ans||'[ยังไม่ได้วางคำตอบ — วางในช่องก่อนกดคัดลอก]'))}
-function cpSpeaking(){var base=document.getElementById('t5').textContent,ans=document.getElementById('a5').value.trim();
- cpText(base+(ans?'\n\n'+ans:'\n\n[แนบไฟล์เสียง หรือพิมพ์ transcript ในช่องก่อนกดคัดลอก]'))}
-function cpCalc(){var base=document.getElementById('t2').textContent;
- var q=document.getElementById('a2q').value.trim(),w=document.getElementById('a2w').value.trim(),ans=document.getElementById('a2a').value.trim();
- cpText(base+'\n\nโจทย์: '+(q||'[วาง]')+'\nวิธีที่คิด: '+(w||'[เขียน]')+'\nคำตอบที่ได้: '+(ans||'[ตอบ]'))}
-function cpCounsel(){var base=document.getElementById('t3').textContent;
- var s=document.getElementById('a3s').value.trim(),p=document.getElementById('a3p').value.trim();
- cpText(base+'\n\nสถานการณ์: '+(s||'[เช่น ผู้ป่วยขอยาที่ห้ามใช้ร่วมกับยาเดิม]')+'\nตรงที่ติด: '+(p||'[เช่น นึกคำอธิบายผลข้างเคียงไม่ออก]'))}
+var TPL_WRITING="Please grade this IELTS Writing Task 1 and Task 2. Give band scores for each of the 4 criteria (Task Achievement/Response, Coherence & Cohesion, Lexical Resource, Grammatical Range & Accuracy) with a brief reason for each, then summarise: (1) the 3 biggest score-losing issues, (2) rewritten example sentences for comparison, (3) vocabulary worth adding to Anki. Reply in Thai, with example sentences in English.";
+var TPL_SPEAKING="Please grade this IELTS Speaking response (audio file/transcript attached). Give band scores for the 4 criteria (Fluency & Coherence, Lexical Resource, Grammatical Range & Accuracy, Pronunciation) with reasons, then point out the top 3 things to fix. Reply in Thai.";
+var TPL_CALC="I got this pharmacy calculation wrong. Please show me where I went wrong, a faster/safer method if there is one, and what this type of question usually tries to trick you on.";
+var TPL_COUNSEL="I was practising this counselling card (Pharmacy Core / OSCE-style) and got stuck. Please give me phrasing I can actually use, and the order I should cover things in.";
+
+function cpWriting(){var ans=document.getElementById('a1').value.trim();
+ cpText(TPL_WRITING+'\n\n'+(ans||'[No answer pasted yet — paste it in the box before copying]'))}
+function cpSpeaking(){var ans=document.getElementById('a5').value.trim();
+ cpText(TPL_SPEAKING+(ans?'\n\n'+ans:'\n\n[Attach the audio file, or type a transcript in the box before copying]'))}
+function cpCalc(){var q=document.getElementById('a2q').value.trim(),w=document.getElementById('a2w').value.trim(),ans=document.getElementById('a2a').value.trim();
+ cpText(TPL_CALC+'\n\nQuestion: '+(q||'[paste it]')+'\nHow I worked it out: '+(w||'[write it]')+'\nMy answer: '+(ans||'[answer]'))}
+function cpCounsel(){var s=document.getElementById('a3s').value.trim(),p=document.getElementById('a3p').value.trim();
+ cpText(TPL_COUNSEL+'\n\nScenario: '+(s||'[e.g. patient asks for a drug that clashes with their current meds]')+'\nWhere I got stuck: '+(p||"[e.g. couldn't find the words to explain a side effect]"))}
+
+function boxWriting(){
+ return '<div class="ansbox"><div class="sec" style="margin-top:0">📤 Send Writing to Claude for review</div>'+
+  '<label>Paste your Task 1 + Task 2 answer</label>'+
+  '<textarea id="a1" rows="6" placeholder="Paste/type your Task 1 and Task 2 answer here..." oninput="saveDraft(\'a1\')"></textarea>'+
+  '<div class="row" style="margin-top:8px"><button class="btn" onclick="cpWriting()">📋 Copy with answer</button>'+
+  '<button class="btn-s" onclick="clearDraft([\'a1\'])">🗑 Clear</button></div></div>';
+}
+function boxSpeaking(){
+ return '<div class="ansbox"><div class="sec" style="margin-top:0">📤 Send Speaking to Claude for review</div>'+
+  '<label>Transcript / cue card topic you answered (optional)</label>'+
+  '<textarea id="a5" rows="4" placeholder="Type your transcript, or a summary of the cue card topic..." oninput="saveDraft(\'a5\')"></textarea>'+
+  '<div class="row" style="margin-top:8px"><button class="btn" onclick="cpSpeaking()">📋 Copy with answer</button>'+
+  '<button class="btn-s" onclick="clearDraft([\'a5\'])">🗑 Clear</button></div></div>';
+}
+function boxCalc(){
+ return '<div class="ansbox"><div class="sec" style="margin-top:0">📤 Send a wrong Pharmacy Core calculation</div>'+
+  '<label>Question</label><textarea id="a2q" rows="2" placeholder="Paste the question here..." oninput="saveDraft(\'a2q\')"></textarea>'+
+  '<label>How you worked it out</label><textarea id="a2w" rows="2" placeholder="Write out your own reasoning..." oninput="saveDraft(\'a2w\')"></textarea>'+
+  '<label>Your answer</label><input id="a2a" placeholder="The answer you gave" oninput="saveDraft(\'a2a\')">'+
+  '<div class="row" style="margin-top:8px"><button class="btn" onclick="cpCalc()">📋 Copy with answer</button>'+
+  '<button class="btn-s" onclick="clearDraft([\'a2q\',\'a2w\',\'a2a\'])">🗑 Clear</button></div></div>';
+}
+function boxCounsel(){
+ return '<div class="ansbox"><div class="sec" style="margin-top:0">📤 Send a Counselling Card sticking point</div>'+
+  '<label>Scenario</label><input id="a3s" placeholder="e.g. patient asks for a drug that clashes with their current meds" oninput="saveDraft(\'a3s\')">'+
+  '<label>Where you got stuck</label><input id="a3p" placeholder="e.g. couldn\'t find the words to explain a side effect" oninput="saveDraft(\'a3p\')">'+
+  '<div class="row" style="margin-top:8px"><button class="btn" onclick="cpCounsel()">📋 Copy with answer</button>'+
+  '<button class="btn-s" onclick="clearDraft([\'a3s\',\'a3p\'])">🗑 Clear</button></div></div>';
+}
+function noSendNote(title){
+ if(/Reading/i.test(title)&&/Listening/i.test(title)){
+  return '<div class="card" style="margin-top:16px;background:#f0f7f2;border-color:#bfe0cc"><b>✅ Nothing to send</b> — Reading &amp; Listening answers are in the Answer key tab, so mark them yourself. Just log your hours below.</div>';
+ }
+ return '';
+}
+function answerBoxesFor(title){
+ var out='';
+ if(/Writing/i.test(title))out+=boxWriting();
+ if(/Speaking/i.test(title))out+=boxSpeaking();
+ if(/Pharmacy Core/i.test(title))out+=boxCalc()+boxCounsel();
+ return out;
+}
 
 function saveCfg(){var u=document.getElementById('cfgUrl').value.trim();
- if(!u){toast('วาง URL ก่อนนะ');return}
- localStorage.setItem(UK,u);toast('บันทึก URL แล้ว กำลังดึงข้อมูล...');pull()}
+ if(!u){toast('Paste a URL first');return}
+ localStorage.setItem(UK,u);toast('URL saved, fetching data...');pull()}
 function clearCfg(){localStorage.removeItem(UK);document.getElementById('cfgUrl').value='';
- status('s-off','โหมดออฟไลน์');toast('ยกเลิกการเชื่อมต่อแล้ว')}
+ status('s-off','Offline mode');toast('Disconnected')}
 
 /* ---------- sync ---------- */
 function pull(){
   var u=url();
-  if(!u){status('s-off','โหมดออฟไลน์');LOG=ls(LK,[]);MOCK=ls(MK,[]);render();return}
-  status('s-off','กำลังดึงข้อมูล...');
+  if(!u){status('s-off','Offline mode');LOG=ls(LK,[]);MOCK=ls(MK,[]);VOCAB=ls(VK,[]);render();renderVocab();return}
+  status('s-off','Fetching data...');
   fetch(u+'?t='+Date.now()).then(function(r){return r.json()}).then(function(d){
     if(!d.ok)throw new Error(d.error||'error');
     LOG=(d.log||[]).map(function(x){return{ts:x.timestamp,d:x.date,t:x.type,o:+x.hours_oet||0,s:+x.hours_stage3||0,n:x.note||''}});
     LOG.sort(function(a,b){return a.d<b.d?1:-1});
     MOCK=d.mock||[];
-    set(LK,LOG);set(MK,MOCK);
-    status('s-on','✅ เชื่อมกับ Google Sheet แล้ว');render();
+    VOCAB=(d.vocab||[]).map(function(x){return{ts:x.timestamp,d:x.date,w:x.word,m:x.meaning||'',e:x.example||'',s:x.source||''}});
+    VOCAB.sort(function(a,b){return a.d<b.d?1:-1});
+    set(LK,LOG);set(MK,MOCK);set(VK,VOCAB);
+    status('s-on','✅ Connected to Google Sheet');render();renderVocab();
   }).catch(function(e){
-    status('s-err','⚠️ เชื่อมต่อไม่ได้ — ใช้ข้อมูลในเครื่อง');
-    LOG=ls(LK,[]);MOCK=ls(MK,[]);render();
+    status('s-err',"⚠️ Couldn't connect — using local data");
+    LOG=ls(LK,[]);MOCK=ls(MK,[]);VOCAB=ls(VK,[]);render();renderVocab();
   });
 }
 function push(payload,okMsg){
   var u=url();
-  if(!u){toast(okMsg+' (เก็บในเครื่อง)');return Promise.resolve()}
+  if(!u){toast(okMsg+' (saved locally)');return Promise.resolve()}
   return fetch(u,{method:'POST',body:JSON.stringify(payload)})
-    .then(function(){toast(okMsg+' ✅ ขึ้น Google Sheet แล้ว')})
-    .catch(function(){toast(okMsg+' (เก็บในเครื่อง — ซิงก์ไม่สำเร็จ)')});
+    .then(function(){toast(okMsg+' ✅ synced to Google Sheet')})
+    .catch(function(){toast(okMsg+' (saved locally — sync failed)')});
 }
 
 /* ---------- actions ---------- */
@@ -263,11 +286,11 @@ function addLog(){
   var d=document.getElementById('fD').value||new Date().toISOString().slice(0,10);
   var o=parseFloat(document.getElementById('fO').value)||0;
   var s=parseFloat(document.getElementById('fS').value)||0;
-  if(!o&&!s){toast('ใส่จำนวนชั่วโมงก่อนนะ');return}
+  if(!o&&!s){toast('Enter hours first');return}
   var rec={ts:Date.now(),d:d,t:document.getElementById('fT').value,o:o,s:s,n:document.getElementById('fN').value.trim()};
   LOG.unshift(rec);set(LK,LOG);render();
   document.getElementById('fO').value='';document.getElementById('fS').value='';document.getElementById('fN').value='';
-  push({sheet:'Log',timestamp:rec.ts,date:rec.d,type:rec.t,hours_oet:rec.o,hours_stage3:rec.s,note:rec.n},'บันทึกแล้ว');
+  push({sheet:'Log',timestamp:rec.ts,date:rec.d,type:rec.t,hours_oet:rec.o,hours_stage3:rec.s,note:rec.n},'Saved');
 }
 function addMock(){
   var g=function(i){return document.getElementById(i).value};
@@ -275,12 +298,25 @@ function addMock(){
   var rec={timestamp:Date.now(),date:d,listening:g('mL'),reading:g('mR'),writing:g('mW'),speaking:g('mS'),
            calc:g('mC'),applied:g('mA'),law:g('mLw'),osce:g('mO'),note:''};
   MOCK.push(rec);set(MK,MOCK);
-  push(Object.assign({sheet:'Mock'},rec),'บันทึกคะแนนแล้ว');
+  push(Object.assign({sheet:'Mock'},rec),'Score saved');
   ['mL','mR','mW','mS','mC','mA','mLw','mO'].forEach(function(i){document.getElementById(i).value=''});
 }
 function del(i){
   var rec=LOG[i];LOG.splice(i,1);set(LK,LOG);render();
-  push({action:'delete',sheet:'Log',timestamp:rec.ts},'ลบแล้ว');
+  push({action:'delete',sheet:'Log',timestamp:rec.ts},'Deleted');
+}
+function addVocab(){
+  var w=document.getElementById('vW').value.trim();
+  if(!w){toast('Type a word first');return}
+  var rec={ts:Date.now(),d:new Date().toISOString().slice(0,10),w:w,
+           m:document.getElementById('vM').value.trim(),e:document.getElementById('vE').value.trim(),s:document.getElementById('vS').value};
+  VOCAB.unshift(rec);set(VK,VOCAB);renderVocab();
+  document.getElementById('vW').value='';document.getElementById('vM').value='';document.getElementById('vE').value='';
+  push({sheet:'Vocab',timestamp:rec.ts,date:rec.d,word:rec.w,meaning:rec.m,example:rec.e,source:rec.s},'Word saved');
+}
+function delVocab(i){
+  var rec=VOCAB[i];VOCAB.splice(i,1);set(VK,VOCAB);renderVocab();
+  push({action:'delete',sheet:'Vocab',timestamp:rec.ts},'Deleted');
 }
 
 /* ---------- render ---------- */
@@ -290,30 +326,35 @@ function render(){
   var ho=0,hs=0,wk=0,ws=weekStart();
   LOG.forEach(function(x){ho+=x.o;hs+=x.s;if(new Date(x.d+'T00:00:00')>=ws)wk+=x.o+x.s});
   var tot=ho+hs;
-  document.getElementById('hTot').innerHTML=tot.toFixed(1)+' <small>/ 300 ชม.</small>';
+  document.getElementById('hTot').innerHTML=tot.toFixed(1)+' <small>/ 300 hrs</small>';
   document.getElementById('hBar').style.width=Math.min(100,tot/300*100)+'%';
-  document.getElementById('hLeft').textContent=tot>=300?'ถึงเป้าแล้ว! 🎉':'เหลืออีก '+(300-tot).toFixed(1)+' ชม.';
-  document.getElementById('sTot').innerHTML=hs.toFixed(1)+' <small>ชม.</small>';
+  document.getElementById('hLeft').textContent=tot>=300?'Target reached! 🎉':(300-tot).toFixed(1)+' hrs left';
+  document.getElementById('sTot').innerHTML=hs.toFixed(1)+' <small>hrs</small>';
   document.getElementById('sBar').style.width=Math.min(100,hs)+'%';
-  document.getElementById('wTot').innerHTML=wk.toFixed(1)+' <small>/ 6 ชม.</small>';
+  document.getElementById('wTot').innerHTML=wk.toFixed(1)+' <small>/ 6 hrs</small>';
   document.getElementById('wBar').style.width=Math.min(100,wk/6*100)+'%';
-  document.getElementById('wMsg').textContent=wk>=6?'ครบเป้าสัปดาห์นี้ 🎉':(wk>0?'ขาดอีก '+(6-wk).toFixed(1)+' ชม.':'ยังไม่ได้บันทึก');
-  document.getElementById('cnt').textContent=LOG.length?'('+LOG.length+' รายการ)':'';
+  document.getElementById('wMsg').textContent=wk>=6?"This week's target hit! 🎉":(wk>0?(6-wk).toFixed(1)+' hrs to go':'Not logged yet');
+  document.getElementById('cnt').textContent=LOG.length?'('+LOG.length+' entries)':'';
   var tb=document.getElementById('tb');
-  tb.innerHTML=LOG.length?LOG.map(function(x,i){return '<tr><td>'+esc(x.d)+'</td><td>'+esc(x.t)+'</td><td>'+((x.o+x.s).toFixed(1))+'</td><td>'+esc(x.n||'—')+'</td><td><button class="btn-s" style="padding:2px 6px;font-size:11px" onclick="del('+i+')">✕</button></td></tr>'}).join(''):'<tr><td colspan="5" class="muted">ยังไม่มีบันทึก</td></tr>';
+  tb.innerHTML=LOG.length?LOG.map(function(x,i){return '<tr><td>'+esc(x.d)+'</td><td>'+esc(x.t)+'</td><td>'+((x.o+x.s).toFixed(1))+'</td><td>'+esc(x.n||'—')+'</td><td><button class="btn-s" style="padding:2px 6px;font-size:11px" onclick="del('+i+')">✕</button></td></tr>'}).join(''):'<tr><td colspan="5" class="muted">No entries yet</td></tr>';
+}
+function renderVocab(){
+  document.getElementById('vCnt').textContent=VOCAB.length?'('+VOCAB.length+' words)':'';
+  var vb=document.getElementById('vTb');
+  vb.innerHTML=VOCAB.length?VOCAB.map(function(x,i){return '<tr><td>'+esc(x.d)+'</td><td><b>'+esc(x.w)+'</b></td><td>'+esc(x.m||'—')+'</td><td>'+esc(x.e||'—')+'</td><td>'+esc(x.s||'—')+'</td><td><button class="btn-s" style="padding:2px 6px;font-size:11px" onclick="delVocab('+i+')">✕</button></td></tr>'}).join(''):'<tr><td colspan="6" class="muted">No words yet</td></tr>';
 }
 function renderChk(){var st=ls(CK,[]),h='';
  CHKS.forEach(function(t,i){h+='<label class="chk'+(st[i]?' done':'')+'"><input type="checkbox"'+(st[i]?' checked':'')+' onchange="tog('+i+')"><span>'+t+'</span></label>'});
  document.getElementById('chks').innerHTML=h}
 function tog(i){var st=ls(CK,[]);st[i]=!st[i];set(CK,st);renderChk()}
-function resetChk(){set(CK,[]);renderChk();toast('เริ่มสัปดาห์ใหม่แล้ว')}
+function resetChk(){set(CK,[]);renderChk();toast('New week started')}
 
 /* ---------- weekly pack ---------- */
-var TH_M=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+var EN_M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function wkLabel(f){
   var m=f.match(/(\d{4})-(\d{2})-(\d{2})/);
   if(!m)return f;
-  return parseInt(m[3],10)+' '+TH_M[parseInt(m[2],10)-1]+' '+(parseInt(m[1],10)+543);
+  return EN_M[parseInt(m[2],10)-1]+' '+parseInt(m[3],10)+', '+m[1];
 }
 function wkSay(msg){document.getElementById('wkTabs').innerHTML='';document.getElementById('wkBody').innerHTML='<div class="muted">'+esc(msg)+'</div>'}
 
@@ -326,11 +367,12 @@ function splitDaySections(md){
   });
   return secs.filter(function(s){return s.lines.join('').trim().length}).map(function(s){return{title:s.title,md:s.lines.join('\n'),revealed:false}});
 }
+var DAY_EN={'จันทร์':'Monday','อังคาร':'Tuesday','พุธ':'Wednesday','พฤหัสบดี':'Thursday','ศุกร์':'Friday','เสาร์':'Saturday','อาทิตย์':'Sunday'};
 function dayLabel(title){
-  var days=['จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์','อาทิตย์'];
-  for(var i=0;i<days.length;i++){if(title.indexOf(days[i])>-1)return days[i]}
-  if(title.indexOf('เฉลย')>-1)return '🔒 เฉลย';
-  return 'ภาพรวม';
+  var keys=Object.keys(DAY_EN);
+  for(var i=0;i<keys.length;i++){if(title.indexOf(keys[i])>-1)return DAY_EN[keys[i]]}
+  if(title.indexOf('เฉลย')>-1)return '🔒 Answer key';
+  return 'Overview';
 }
 function renderDayTabs(){
   document.getElementById('wkTabs').innerHTML=WK_SECTIONS.map(function(s,i){
@@ -340,12 +382,16 @@ function renderDayTabs(){
 function showDay(i){
   var s=WK_SECTIONS[i];if(!s)return;
   Array.prototype.forEach.call(document.querySelectorAll('.wktab'),function(b,j){b.className='wktab'+(j===i?' on':'')});
-  var el=document.getElementById('wkBody'),isAnswer=dayLabel(s.title).indexOf('เฉลย')>-1;
+  var el=document.getElementById('wkBody'),isAnswer=dayLabel(s.title).indexOf('Answer')>-1;
   if(isAnswer&&!s.revealed){
-    el.innerHTML='<div style="text-align:center;padding:26px 10px"><button class="btn-s" onclick="revealAnswer('+i+')">🔒 กดเพื่อดูเฉลย</button></div>';
-  }else if(window.marked&&marked.parse){el.innerHTML=marked.parse(s.md)}
-  /* CDN blocked (เคยเจอกับ raw.githubusercontent) — ยังอ่านได้ แค่ไม่จัดรูปแบบ */
-  else{el.innerHTML='<pre style="white-space:pre-wrap;font:inherit">'+esc(s.md)+'</pre>'}
+    el.innerHTML='<div style="text-align:center;padding:26px 10px"><button class="btn-s" onclick="revealAnswer('+i+')">🔒 Tap to reveal answer key</button></div>';
+  }else{
+    var html=window.marked&&marked.parse?marked.parse(s.md):'<pre style="white-space:pre-wrap;font:inherit">'+esc(s.md)+'</pre>';
+    /* CDN blocked (used to happen with raw.githubusercontent) — still readable, just unstyled */
+    if(!isAnswer){html+=noSendNote(s.title)+answerBoxesFor(s.title)}
+    el.innerHTML=html;
+    restoreDrafts();
+  }
   document.getElementById('wkWrap').scrollTop=0;
 }
 function revealAnswer(i){WK_SECTIONS[i].revealed=true;showDay(i)}
@@ -355,23 +401,25 @@ function loadWeekly(f){
     .then(function(r){if(!r.ok)throw 0;return r.text()})
     .then(function(md){
       WK_SECTIONS=splitDaySections(md);
-      if(!WK_SECTIONS.length){wkSay('ไฟล์นี้ว่างเปล่า');return}
+      if(!WK_SECTIONS.length){wkSay('This pack is empty');return}
       renderDayTabs();showDay(0);
     })
-    .catch(function(){wkSay('เปิดชุดติวไม่สำเร็จ ลองรีเฟรชอีกครั้ง')});
+    .catch(function(){wkSay('Could not open this pack — try refreshing')});
 }
 function initWeekly(){
   fetch('content/index.json',{cache:'no-store'})
     .then(function(r){if(!r.ok)throw 0;return r.json()})
     .then(function(j){
-      var list=(j.weekly||[]).slice().sort().reverse();
-      if(!list.length){wkSay('ยังไม่มีชุดติว — รอเช้าวันจันทร์');return}
+      var all=(j.weekly||[]).slice().sort();
+      if(!all.length){wkSay('No pack yet — check back Monday morning');return}
+      var list=all.slice().reverse();
       document.getElementById('wkSel').innerHTML=list.map(function(f){
-        return '<option value="'+f+'">'+wkLabel(f)+'</option>'}).join('');
-      document.getElementById('wkNote').textContent='Claude ส่งให้ทุกเช้าวันจันทร์ · มีทั้งหมด '+list.length+' ชุด';
+        var wn=all.indexOf(f)+1;
+        return '<option value="'+f+'">Week '+wn+' — '+wkLabel(f)+'</option>'}).join('');
+      document.getElementById('wkNote').textContent='Claude sends a new pack every Monday morning · '+list.length+' pack'+(list.length>1?'s':'')+' so far';
       loadWeekly(list[0]);
     })
-    .catch(function(){wkSay('ยังไม่มีชุดติว — รอเช้าวันจันทร์')});
+    .catch(function(){wkSay('No pack yet — check back Monday morning')});
 }
 
 document.getElementById('fD').value=new Date().toISOString().slice(0,10);
