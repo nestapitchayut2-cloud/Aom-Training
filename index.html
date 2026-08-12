@@ -38,6 +38,9 @@ td{padding:6px;border-bottom:1px solid #eef1f6;vertical-align:top}
 .pill{display:inline-block;font-size:10.5px;background:#eef2f7;color:#4b5871;padding:2px 8px;border-radius:20px;margin:2px 3px 2px 0}
 #sync{font-size:11.5px;padding:5px 10px;border-radius:7px;display:inline-block;font-weight:600}
 .s-on{background:#def7ec;color:#03543f}.s-off{background:#fef3c7;color:#92400e}.s-err{background:#fde8e8;color:#9b1c1c}
+.wktabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.wktab{padding:6px 13px;border-radius:20px;font-size:12.5px;font-weight:700;background:#eef2f7;color:#37455c;border:1px solid #d3dbe6;cursor:pointer}
+.wktab.on{background:#2e75b6;color:#fff;border-color:#2e75b6}
 </style>
 </head>
 <body>
@@ -79,41 +82,44 @@ td{padding:6px;border-bottom:1px solid #eef1f6;vertical-align:top}
     <div class="muted" id="wkNote">Claude ส่งให้ทุกเช้าวันจันทร์ — อ่านที่นี่ได้เลย ไม่ต้องเปิดแอป</div>
     <select id="wkSel" style="margin-left:auto;padding:5px 8px;border:1px solid #d0d7de;border-radius:7px" onchange="loadWeekly(this.value)"></select>
   </div>
+  <div id="wkTabs" class="wktabs"></div>
   <div id="wkWrap"><div id="wkBody" class="md" style="margin-top:10px">กำลังโหลด…</div></div>
 </div>
 
 <div class="sec">📤 คัดลอกส่งให้ Claude ตรวจ</div>
 <div class="grid g2">
   <div class="card"><h2>✍️ 1. IELTS Writing Task 1+2 <span class="badge b-red">สำคัญสุด</span></h2>
-    <div class="muted">เขียนจับเวลา 20+40 นาที (เสาร์) → ส่งพร้อมข้อความนี้</div>
-    <div class="tpl" id="t1">ช่วยตรวจ IELTS Writing Task 1 และ Task 2 ให้หน่อย ให้ band แยกตามเกณฑ์จริงทั้ง 4 ตัว (Task Achievement/Response, Coherence &amp; Cohesion, Lexical Resource, Grammatical Range &amp; Accuracy) แต่ละอย่างพร้อมเหตุผลสั้นๆ แล้วสรุป: (1) 3 จุดที่ทำให้เสียคะแนนมากสุด (2) ประโยคตัวอย่างที่เขียนใหม่ให้ดูเทียบ (3) คำศัพท์ที่ควรเพิ่มลง Anki ตอบเป็นภาษาไทย ตัวอย่างประโยคเป็นอังกฤษ
-
-[แนบ Task 1 + Task 2 ที่เขียน]</div>
-    <button class="btn" onclick="cp('t1')">📋 คัดลอก</button></div>
+    <div class="muted">เขียนจับเวลา 20+40 นาที (เสาร์) → วางคำตอบด้านล่างแล้วกดคัดลอกทีเดียว</div>
+    <div class="tpl" id="t1">ช่วยตรวจ IELTS Writing Task 1 และ Task 2 ให้หน่อย ให้ band แยกตามเกณฑ์จริงทั้ง 4 ตัว (Task Achievement/Response, Coherence &amp; Cohesion, Lexical Resource, Grammatical Range &amp; Accuracy) แต่ละอย่างพร้อมเหตุผลสั้นๆ แล้วสรุป: (1) 3 จุดที่ทำให้เสียคะแนนมากสุด (2) ประโยคตัวอย่างที่เขียนใหม่ให้ดูเทียบ (3) คำศัพท์ที่ควรเพิ่มลง Anki ตอบเป็นภาษาไทย ตัวอย่างประโยคเป็นอังกฤษ</div>
+    <label>วาง Task 1 + Task 2 ที่เขียน</label>
+    <textarea id="a1" rows="6" placeholder="วาง/พิมพ์ Task 1 และ Task 2 ที่เขียนตรงนี้..." oninput="saveDraft('a1')"></textarea>
+    <div class="row" style="margin-top:8px"><button class="btn" onclick="cpWriting()">📋 คัดลอกพร้อมคำตอบ</button>
+      <button class="btn-s" onclick="clearDraft(['a1'])">🗑 ล้าง</button></div></div>
 
   <div class="card"><h2>🗣 2. IELTS Speaking</h2>
-    <div class="muted">อัดเสียงไว้ (อาทิตย์) ส่งไฟล์เสียงหรือ transcript พร้อมข้อความนี้</div>
-    <div class="tpl" id="t5">ช่วยตรวจ IELTS Speaking ให้หน่อย (ไฟล์เสียง/transcript ที่แนบ) ให้ band ตามเกณฑ์ 4 ตัว (Fluency &amp; Coherence, Lexical Resource, Grammatical Range &amp; Accuracy, Pronunciation) พร้อมเหตุผล แล้วชี้ 3 จุดที่ต้องแก้ ตอบเป็นภาษาไทย
-
-[แนบไฟล์เสียง/transcript + หัวข้อ cue card ที่ตอบ]</div>
-    <button class="btn" onclick="cp('t5')">📋 คัดลอก</button></div>
+    <div class="muted">อัดเสียงไว้ (อาทิตย์) — พิมพ์ transcript ด้านล่างได้ ถ้าส่งไฟล์เสียงแยก ก็คัดลอกข้อความนี้แล้วแนบไฟล์ในแชท</div>
+    <div class="tpl" id="t5">ช่วยตรวจ IELTS Speaking ให้หน่อย (ไฟล์เสียง/transcript ที่แนบ) ให้ band ตามเกณฑ์ 4 ตัว (Fluency &amp; Coherence, Lexical Resource, Grammatical Range &amp; Accuracy, Pronunciation) พร้อมเหตุผล แล้วชี้ 3 จุดที่ต้องแก้ ตอบเป็นภาษาไทย</div>
+    <label>Transcript / หัวข้อ cue card ที่ตอบ (ถ้ามี)</label>
+    <textarea id="a5" rows="4" placeholder="พิมพ์ transcript หรือสรุปหัวข้อ cue card ที่ตอบ..." oninput="saveDraft('a5')"></textarea>
+    <div class="row" style="margin-top:8px"><button class="btn" onclick="cpSpeaking()">📋 คัดลอกพร้อมข้อความ</button>
+      <button class="btn-s" onclick="clearDraft(['a5'])">🗑 ล้าง</button></div></div>
 
   <div class="card"><h2>🔢 3. Pharmacy Core — โจทย์คำนวณที่ทำผิด</h2>
     <div class="muted">ส่งเฉพาะข้อที่ผิด/ไม่แน่ใจ พร้อมวิธีที่คิด</div>
-    <div class="tpl" id="t2">โจทย์คำนวณเภสัชข้อนี้ทำผิด ช่วยดูว่าพลาดตรงไหน มีวิธีคิดที่เร็ว/ปลอดภัยกว่าไหม และโจทย์แนวนี้มักหลอกตรงจุดไหน
-
-โจทย์: [วาง]
-วิธีที่คิด: [เขียน]
-คำตอบที่ได้: [ตอบ]</div>
-    <button class="btn" onclick="cp('t2')">📋 คัดลอก</button></div>
+    <div class="tpl" id="t2">โจทย์คำนวณเภสัชข้อนี้ทำผิด ช่วยดูว่าพลาดตรงไหน มีวิธีคิดที่เร็ว/ปลอดภัยกว่าไหม และโจทย์แนวนี้มักหลอกตรงจุดไหน</div>
+    <label>โจทย์</label><textarea id="a2q" rows="2" placeholder="วางโจทย์ตรงนี้..." oninput="saveDraft('a2q')"></textarea>
+    <label>วิธีที่คิด</label><textarea id="a2w" rows="2" placeholder="เขียนวิธีคิดของตัวเอง..." oninput="saveDraft('a2w')"></textarea>
+    <label>คำตอบที่ได้</label><input id="a2a" placeholder="คำตอบที่ตอบไป" oninput="saveDraft('a2a')">
+    <div class="row" style="margin-top:8px"><button class="btn" onclick="cpCalc()">📋 คัดลอกพร้อมคำตอบ</button>
+      <button class="btn-s" onclick="clearDraft(['a2q','a2w','a2a'])">🗑 ล้าง</button></div></div>
 
   <div class="card"><h2>🏥 4. Pharmacy Core — จุดติดขัด Counselling Card</h2>
     <div class="muted">ไม่ต้องส่งไฟล์เสียง แค่บอกจุดที่ติด</div>
-    <div class="tpl" id="t3">ซ้อม counselling card (Pharmacy Core / OSCE-style) แล้วติดตรงนี้ ช่วยให้ประโยคที่ใช้ได้จริง และบอกลำดับการพูดที่ควรใช้
-
-สถานการณ์: [เช่น ผู้ป่วยขอยาที่ห้ามใช้ร่วมกับยาเดิม]
-ตรงที่ติด: [เช่น นึกคำอธิบายผลข้างเคียงไม่ออก]</div>
-    <button class="btn" onclick="cp('t3')">📋 คัดลอก</button></div>
+    <div class="tpl" id="t3">ซ้อม counselling card (Pharmacy Core / OSCE-style) แล้วติดตรงนี้ ช่วยให้ประโยคที่ใช้ได้จริง และบอกลำดับการพูดที่ควรใช้</div>
+    <label>สถานการณ์</label><input id="a3s" placeholder="เช่น ผู้ป่วยขอยาที่ห้ามใช้ร่วมกับยาเดิม" oninput="saveDraft('a3s')">
+    <label>ตรงที่ติด</label><input id="a3p" placeholder="เช่น นึกคำอธิบายผลข้างเคียงไม่ออก" oninput="saveDraft('a3p')">
+    <div class="row" style="margin-top:8px"><button class="btn" onclick="cpCounsel()">📋 คัดลอกพร้อมคำตอบ</button>
+      <button class="btn-s" onclick="clearDraft(['a3s','a3p'])">🗑 ล้าง</button></div></div>
 
   <div class="card"><h2>📊 5. ขอวิเคราะห์ความคืบหน้า <span class="badge b-blue">เดือนละครั้ง</span></h2>
     <div class="muted">Claude อ่านข้อมูลจาก Google Sheet ได้เอง ไม่ต้องพิมพ์ตัวเลขซ้ำ</div>
@@ -188,7 +194,7 @@ td{padding:6px;border-bottom:1px solid #eef1f6;vertical-align:top}
 <div class="toast" id="toast"></div>
 
 <script>
-var LK='aom_log_v2',MK='aom_mock_v2',CK='aom_chk_v2',UK='aom_url_v2';
+var LK='aom_log_v2',MK='aom_mock_v2',CK='aom_chk_v2',UK='aom_url_v2',DK='aom_draft_v1';
 var CHKS=['ทำ Reading + Listening เต็มชุด (พุธ)','ทำ Writing Task 1 + Task 2 (เสาร์) + ส่งให้ตรวจ','ซ้อม Speaking กับ Ness (อาทิตย์) อัดเสียง + ส่งให้ตรวจ','ทำโจทย์คำนวณ 5 ข้อ + counselling card 1 ใบ (Pharmacy Core)','อ่านสรุปคลินิกสัปดาห์นี้','Anki ทุกวัน','บันทึกชั่วโมงลงแดชบอร์ด'];
 var LOG=[],MOCK=[];
 
@@ -198,10 +204,28 @@ function url(){return localStorage.getItem(UK)||''}
 function toast(m){var t=document.getElementById('toast');t.textContent=m;t.className='toast on';setTimeout(function(){t.className='toast'},1900)}
 function status(cls,txt){var s=document.getElementById('sync');s.className=cls;s.textContent=txt}
 
-function cp(id){var ta=document.createElement('textarea');ta.value=document.getElementById(id).textContent;
+function cpText(text){var ta=document.createElement('textarea');ta.value=text;
  ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
  try{document.execCommand('copy');toast('คัดลอกแล้ว — วางในแชทได้เลย')}catch(e){toast('คัดลอกไม่สำเร็จ')}
  document.body.removeChild(ta)}
+function cp(id){cpText(document.getElementById(id).textContent)}
+
+function draftAll(){return ls(DK,{})}
+function saveDraft(id){var d=draftAll();d[id]=document.getElementById(id).value;set(DK,d)}
+function restoreDrafts(){var d=draftAll();Object.keys(d).forEach(function(id){var el=document.getElementById(id);if(el)el.value=d[id]})}
+function clearDraft(ids){ids.forEach(function(id){var el=document.getElementById(id);if(el)el.value=''});
+ var d=draftAll();ids.forEach(function(id){delete d[id]});set(DK,d);toast('ล้างข้อความแล้ว')}
+
+function cpWriting(){var base=document.getElementById('t1').textContent,ans=document.getElementById('a1').value.trim();
+ cpText(base+'\n\n'+(ans||'[ยังไม่ได้วางคำตอบ — วางในช่องก่อนกดคัดลอก]'))}
+function cpSpeaking(){var base=document.getElementById('t5').textContent,ans=document.getElementById('a5').value.trim();
+ cpText(base+(ans?'\n\n'+ans:'\n\n[แนบไฟล์เสียง หรือพิมพ์ transcript ในช่องก่อนกดคัดลอก]'))}
+function cpCalc(){var base=document.getElementById('t2').textContent;
+ var q=document.getElementById('a2q').value.trim(),w=document.getElementById('a2w').value.trim(),ans=document.getElementById('a2a').value.trim();
+ cpText(base+'\n\nโจทย์: '+(q||'[วาง]')+'\nวิธีที่คิด: '+(w||'[เขียน]')+'\nคำตอบที่ได้: '+(ans||'[ตอบ]'))}
+function cpCounsel(){var base=document.getElementById('t3').textContent;
+ var s=document.getElementById('a3s').value.trim(),p=document.getElementById('a3p').value.trim();
+ cpText(base+'\n\nสถานการณ์: '+(s||'[เช่น ผู้ป่วยขอยาที่ห้ามใช้ร่วมกับยาเดิม]')+'\nตรงที่ติด: '+(p||'[เช่น นึกคำอธิบายผลข้างเคียงไม่ออก]'))}
 
 function saveCfg(){var u=document.getElementById('cfgUrl').value.trim();
  if(!u){toast('วาง URL ก่อนนะ');return}
@@ -291,17 +315,48 @@ function wkLabel(f){
   if(!m)return f;
   return parseInt(m[3],10)+' '+TH_M[parseInt(m[2],10)-1]+' '+(parseInt(m[1],10)+543);
 }
-function wkSay(msg){document.getElementById('wkBody').innerHTML='<div class="muted">'+esc(msg)+'</div>'}
+function wkSay(msg){document.getElementById('wkTabs').innerHTML='';document.getElementById('wkBody').innerHTML='<div class="muted">'+esc(msg)+'</div>'}
+
+var WK_SECTIONS=[];
+function splitDaySections(md){
+  var lines=md.split('\n'),secs=[],cur=null;
+  lines.forEach(function(line){
+    if(/^# (?!#)/.test(line)){cur={title:line.replace(/^#\s*/,'').trim(),lines:[line]};secs.push(cur)}
+    else{if(!cur){cur={title:'',lines:[]};secs.push(cur)}cur.lines.push(line)}
+  });
+  return secs.filter(function(s){return s.lines.join('').trim().length}).map(function(s){return{title:s.title,md:s.lines.join('\n'),revealed:false}});
+}
+function dayLabel(title){
+  var days=['จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์','อาทิตย์'];
+  for(var i=0;i<days.length;i++){if(title.indexOf(days[i])>-1)return days[i]}
+  if(title.indexOf('เฉลย')>-1)return '🔒 เฉลย';
+  return 'ภาพรวม';
+}
+function renderDayTabs(){
+  document.getElementById('wkTabs').innerHTML=WK_SECTIONS.map(function(s,i){
+    return '<button class="wktab'+(i===0?' on':'')+'" onclick="showDay('+i+')">'+esc(dayLabel(s.title))+'</button>'
+  }).join('');
+}
+function showDay(i){
+  var s=WK_SECTIONS[i];if(!s)return;
+  Array.prototype.forEach.call(document.querySelectorAll('.wktab'),function(b,j){b.className='wktab'+(j===i?' on':'')});
+  var el=document.getElementById('wkBody'),isAnswer=dayLabel(s.title).indexOf('เฉลย')>-1;
+  if(isAnswer&&!s.revealed){
+    el.innerHTML='<div style="text-align:center;padding:26px 10px"><button class="btn-s" onclick="revealAnswer('+i+')">🔒 กดเพื่อดูเฉลย</button></div>';
+  }else if(window.marked&&marked.parse){el.innerHTML=marked.parse(s.md)}
+  /* CDN blocked (เคยเจอกับ raw.githubusercontent) — ยังอ่านได้ แค่ไม่จัดรูปแบบ */
+  else{el.innerHTML='<pre style="white-space:pre-wrap;font:inherit">'+esc(s.md)+'</pre>'}
+  document.getElementById('wkWrap').scrollTop=0;
+}
+function revealAnswer(i){WK_SECTIONS[i].revealed=true;showDay(i)}
 function loadWeekly(f){
   if(!f){return}
   fetch('content/weekly/'+f,{cache:'no-store'})
     .then(function(r){if(!r.ok)throw 0;return r.text()})
     .then(function(md){
-      var el=document.getElementById('wkBody');
-      if(window.marked&&marked.parse){el.innerHTML=marked.parse(md)}
-      /* CDN blocked (เคยเจอกับ raw.githubusercontent) — ยังอ่านได้ แค่ไม่จัดรูปแบบ */
-      else{el.innerHTML='<pre style="white-space:pre-wrap;font:inherit">'+esc(md)+'</pre>'}
-      document.getElementById('wkWrap').scrollTop=0;
+      WK_SECTIONS=splitDaySections(md);
+      if(!WK_SECTIONS.length){wkSay('ไฟล์นี้ว่างเปล่า');return}
+      renderDayTabs();showDay(0);
     })
     .catch(function(){wkSay('เปิดชุดติวไม่สำเร็จ ลองรีเฟรชอีกครั้ง')});
 }
@@ -322,7 +377,7 @@ function initWeekly(){
 document.getElementById('fD').value=new Date().toISOString().slice(0,10);
 document.getElementById('mD').value=new Date().toISOString().slice(0,10);
 document.getElementById('cfgUrl').value=url();
-renderChk();pull();initWeekly();
+renderChk();pull();initWeekly();restoreDrafts();
 </script>
 </body>
 </html>
